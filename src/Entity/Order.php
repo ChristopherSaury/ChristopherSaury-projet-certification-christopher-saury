@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OrderRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,6 +39,22 @@ class Order
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $location;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orders")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Dishes::class, inversedBy="orders")
+     */
+    private $dish;
+
+    public function __construct()
+    {
+        $this->dish = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -88,6 +106,42 @@ class Order
     public function setLocation(?string $location): self
     {
         $this->location = $location;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dishes[]
+     */
+    public function getDish(): Collection
+    {
+        return $this->dish;
+    }
+
+    public function addDish(Dishes $dish): self
+    {
+        if (!$this->dish->contains($dish)) {
+            $this->dish[] = $dish;
+        }
+
+        return $this;
+    }
+
+    public function removeDish(Dishes $dish): self
+    {
+        $this->dish->removeElement($dish);
 
         return $this;
     }
