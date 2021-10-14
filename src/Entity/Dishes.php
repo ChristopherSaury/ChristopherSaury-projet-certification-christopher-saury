@@ -18,12 +18,12 @@ class Dishes
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=90)
+     * @ORM\Column(type="string", length=45)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=90)
+     * @ORM\Column(type="string", length=80)
      */
     private $description;
 
@@ -38,19 +38,9 @@ class Dishes
     private $url;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $category;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $quantity;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $available;
 
     public function getId(): ?int
     {
@@ -105,18 +95,6 @@ class Dishes
         return $this;
     }
 
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getQuantity(): ?int
     {
         return $this->quantity;
@@ -125,18 +103,6 @@ class Dishes
     public function setQuantity(?int $quantity): self
     {
         $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    public function getAvailable(): ?bool
-    {
-        return $this->available;
-    }
-
-    public function setAvailable(bool $available): self
-    {
-        $this->available = $available;
 
         return $this;
     }
