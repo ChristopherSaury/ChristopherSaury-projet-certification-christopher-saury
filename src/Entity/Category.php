@@ -24,14 +24,10 @@ class Category
      */
     private $name;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Dishes::class, mappedBy="Category", orphanRemoval=true)
-     */
-    private $dishes;
 
     public function __construct()
     {
-        $this->dishes = new ArrayCollection();
+      
     }
 
     public function getId(): ?int
@@ -49,35 +45,6 @@ class Category
         $this->name = $name;
 
         return $this;
-    }
+    } 
 
-    /**
-     * @return Collection|Dishes[]
-     */
-    public function getDishes(): Collection
-    {
-        return $this->dishes;
-    }
-
-    public function addDish(Dishes $dish): self
-    {
-        if (!$this->dishes->contains($dish)) {
-            $this->dishes[] = $dish;
-            $dish->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDish(Dishes $dish): self
-    {
-        if ($this->dishes->removeElement($dish)) {
-            // set the owning side to null (unless already changed)
-            if ($dish->getCategory() === $this) {
-                $dish->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
 }
