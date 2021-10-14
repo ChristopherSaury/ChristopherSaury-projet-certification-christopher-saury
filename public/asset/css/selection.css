@@ -1,0 +1,184 @@
+#dishes {
+    padding: 100px 0;
+  }
+  .dish-card{
+    padding-bottom: 70px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 5px 5px 15px #000;
+    cursor: pointer;
+  }
+  .dish-img{
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+  }
+  .dish-img img{
+    width: 100%;
+    height: 300px;
+    transition: .4s;
+  }
+  .dish-card:hover .dish-img img{
+    transform: scale(1.1);
+  }
+  .dish-content{
+    height: 80px;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    overflow: hidden;
+    bottom: 0;
+    transition: all .4s;
+    background: #684f40;
+    color: #fff;
+    z-index: 5;
+  }
+  .dish-card:hover .dish-content{
+    height: 150px;
+  }
+  .dish-info{
+    padding: 5px 20px 5px 20px;
+    transition: all .5s;
+  }
+  .dish-card .dish-content .dish-info h3{
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 5px;
+  }
+  .dish-info p {
+    margin-top: 15px;
+  }
+  /* .card {
+    font-size: 14px;
+    width: 255px;
+    height: 350px;
+    border-radius: 0;
+    border: #684f40 solid 3px;
+    margin: 10px;
+    margin-left: 5%;
+    padding: 0;
+    position: relative;
+  }
+  .card .image__overlay{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #684f40;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+  }
+  .card .image__overlay:hover{
+    opacity: 1;
+  }
+  .card .card-img-top{
+    width: 100%;
+    height: 244px;
+    height: 100%;
+    border-radius: 0;
+  } */
+  
+  #dishes .dish-page{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  #dishes .vertical-menu{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 250px;
+    height: 100%;
+    margin-left: 2%;
+    position: sticky;
+    top: 0;
+  }
+  #dishes .vertical-menu div{
+    width: 100%;
+    height: auto;
+  }
+  #dishes .delivery-choice{
+    margin-top: 10%;
+    width: 100%;
+  }
+  #dishes .vertical-menu ul{
+    list-style-type: none;
+    font-size: 14px;
+  }
+  #dishes .vertical-menu h5{
+    margin-bottom: 10%;
+    position: relative;
+  }
+  #dishes .vertical-menu h5::before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(219, 215, 215);
+    /* left: 90px; */
+    top: 0px;
+    position: absolute;
+  }
+  
+  #dishes .selection-dishes{
+    width: 100%;
+    height: 100%;
+  }
+  
+  #dishes .selection-dishes .row{
+    margin-left: 2px;
+  }
+  
+  #dishes .food-category{
+    width: 100%;
+  }
+  #dishes .card{
+    position: relative;
+  }
+  #dishes .card h4{
+    font-size: 15px;
+    font-weight: bold;
+  }
+  #dishes .card a {
+    cursor: pointer;
+    margin-left: 0.5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #684f40;
+    text-decoration: none;
+    border-radius: 50%;
+    background: rgb(214, 208, 208);
+    position: absolute;
+    bottom: 10px;
+    right: 2px;
+  }
+  #dishes .card a:hover {
+    color: #fff;
+    background: var(--first);
+    transition: all 0.4s linear;
+    transform: rotate(360deg);
+  }
+  #dishes .dish-options{
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+  }
+  #dishes .dish-options .btn{
+    background-color: #684f40;
+    color: #fdbd32;
+  }
+  #dishes .dish-options .btn:hover{
+    background-color: #fdbd32;
+    color: #684f40;
+  }
+  

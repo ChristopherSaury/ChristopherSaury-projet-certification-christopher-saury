@@ -1,0 +1,43 @@
+
+#logIn {
+    background-color: #fff;
+    padding: 5% 0 20% 0;
+  }
+  #logIn form {
+    color: #fff;
+    background: #684f40;
+    /* padding: 5%; */
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    padding: 80px 32px;
+    margin-top: 0%;
+    margin-bottom: 20%;
+  }
+  .form-wrap {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #logIn form h2 {
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+  }
+  
+  #logIn form input[type="email"],
+  #logIn form input[type="password"] {
+    padding: 16px;
+    margin-bottom: 32px;
+    border-radius: 4px;
+  }
+  
+  .btn-form-wrapper button {
+   width: 100%;
+   height: auto;
+   color: #684f40;
+  }
+
