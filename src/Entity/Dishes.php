@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DishesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,22 @@ class Dishes
      * @ORM\Column(type="boolean")
      */
     private $available;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Order::class, mappedBy="dish")
+     */
+    private $orders;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="dishes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Category;
+
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +155,33 @@ class Dishes
     public function setAvailable(bool $available): self
     {
         $this->available = $available;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->addDish($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->removeElement($order)) {
+            $order->removeDish($this);
+        }
 
         return $this;
     }
