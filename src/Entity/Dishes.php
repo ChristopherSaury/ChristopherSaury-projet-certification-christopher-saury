@@ -44,6 +44,12 @@ class Dishes
      */
     private $quantity;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="dishes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +111,18 @@ class Dishes
     public function setQuantity(?int $quantity): self
     {
         $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
