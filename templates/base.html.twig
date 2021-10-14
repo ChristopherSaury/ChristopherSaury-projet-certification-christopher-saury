@@ -5,15 +5,73 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        {%  block style%}
+        <link rel="stylesheet" href="{{asset('asset/css/navbar-footer-base.css')}}">
         {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+        {% block stylesheets %}
         {% endblock %}
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+        
     </head>
     <body>
+      <div class="box-area">
+        <header id="site-header">
+            <a href="#" class="logo">La Fourchette Victorieuse</a>
+      
+            <nav class="navbar">
+              <a class="navigation-link" href="{{path('home')}}">Accueil</a>
+              <a class="navigation-link" href="">Inscription</a>
+              <a class="navigation-link" href="#review">Avis</a>
+              <a class="navigation-link" href="{{path('selection')}}">Nos plats</a>
+              <a class="navigation-link" href="#contact">Contact</a>
+              <a class="navigation-link" href="#faq">FAQ</a>
+            </nav>
+      
+            <div class="icons">
+              <i class="fas fa-bars" id="menu-bars"></i>
+              <!-- <i class="fas fa-search" id="search-icon"></i>
+              <a href="#" class="fas fa-heart"></a> -->
+              <a href="#" class="fas fa-shopping-cart"></a>
+            </div>
+            </div>
+          </header>
+
+      </div>
         {% block body %}{% endblock %}
+        <footer>
+          <div class="container d-flex justify-content-center">
+            <div class="row">
+              <div class="col-lg d-flex flex-column">
+                <h6>Plan du site</h6>
+                <a href="{{path('home')}}">Accueil</a>
+                <a href="">Inscription</a>
+                <a href="">Connexion</a>
+                <a href="#">Avis</a>
+                <a href="#">Nos plats</a>
+                <a href="#">Contact</a>
+                <a href="#">F.A.Q.</a>
+              </div>
+              <div class="col-lg d-flex flex-column">
+                <h6>Nos réseaux sociaux</h6>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">Facebook</a>
+                <a href="#">Youtube</a>
+                <a href="#">Linkedin</a>
+              </div>
+            </div>
+          </div>
+          <p class="text-center pt-5 pb-1">
+            par Christopher Saury <span class="far fa-copyright"></span>
+            <span id="currentYear"></span> tout droits réservés
+          </p>
+        </footer>
     </body>
+    {% block javascripts %}
+        {% endblock %}
 </html>
