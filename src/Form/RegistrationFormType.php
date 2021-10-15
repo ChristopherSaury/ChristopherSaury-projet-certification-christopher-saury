@@ -27,7 +27,10 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Prénom* :',
                 'attr' => ['placeholder' => 'Entrer votre prénom']
             ])
-            ->add('email', TextType::class,[ 'label' => 'Email* :', 'attr' => ['placeholder' => 'Entrer votre email']])
+            ->add('phone', TextType::class,['label' => 'numéro de téléphone (facultatif):',
+            'required' => false,
+                    'attr' => ['placeholder' => 'Entrer votre numéro de téléphone']])
+            ->add('email', TextType::class,[ 'label' => 'Email* :', 'attr' => ['placeholder' => 'Entrer votre adresse email']])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => 'Termes d\'utilisation',
                 'mapped' => false,

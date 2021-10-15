@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{%  block stylesheets%}
+<link rel="stylesheet" href="{{asset('asset/css/sign_up.css')}}">
+{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <section id="signUp">
+        <div class="container">
+            <div class="row">
+                <div class="form-wrap col-lg">
+                    <div class="form">
+
+                    {{ form_start(registrationForm) }}
+                    <h2 class="text-center">Inscription</h2>
+                    {{ form_row(registrationForm.lastname) }}
+                    {{ form_row(registrationForm.firstname) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.phone) }}
+                    {{ form_row(registrationForm.plainPassword) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+                    
+                    <div class="btn-form-wrapper">
+                        <button type="submit" class="btn">Terminer</button>
+                    </div>
+                    {{ form_end(registrationForm) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</section>
+{% endblock %}
