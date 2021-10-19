@@ -1,21 +1,21 @@
 // PARTIE REVEAL ON SCROLL
 let navHome = document.getElementById('site-header');
-let navItem = document.querySelectorAll('.navigation-link');
+let navItem = document.getElementsByClassName('navigation-link');
+console.log(navItem);
 
 window.addEventListener('scroll', ()=>{
   const scrollPosition = window.scrollY;
-  if(scrollPosition < 80){
-    navHome.style.backgroundColor = 'transparent';
-    navHome.style.boxShadow = 'none';
-    for (let i = 0; i < navItem.length; i++){
-      navItem[i].style.color = '#ffffff';
-      navItem[i].style.hover.color = '#ffffff';
+  if(scrollPosition > 80){
+    navHome.classList.add('active');
+    for (let i = 0 ; i < navItem.length; i++){
+
+      navItem[i].classList.add('active');
     }
-  }else if(scrollPosition >= 80){
-    navHome.style.backgroundColor = '#ffffff';
-    navHome.style.boxShadow = '0 0.5rem 1.5rem rgba(0, 0, 0, 0.1)';
-    for (let i = 0; i < navItem.length; i++){
-      navItem[i].style.color = '#684f40';
+  }else{
+    navHome.classList.remove('active');
+    for (let i = 0 ; i < navItem.length; i++){
+
+      navItem[i].classList.remove('active');
     }
   }
  });
