@@ -1,7 +1,6 @@
 // PARTIE REVEAL ON SCROLL
 let navHome = document.getElementById('site-header');
 let navItem = document.getElementsByClassName('navigation-link');
-console.log(navItem);
 
 window.addEventListener('scroll', ()=>{
   const scrollPosition = window.scrollY;
@@ -18,6 +17,7 @@ window.addEventListener('scroll', ()=>{
       navItem[i].classList.remove('active');
     }
   }
+
  });
 
 
