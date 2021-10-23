@@ -21,11 +21,14 @@
     <body>
       <div class="box-area">
         <header id="site-header">
-            <a href="#" class="logo">La Fourchette Victorieuse</a>
+            <a href="{{ path('home') }}" class="logo-nav">La Fourchette Victorieuse</a>
       
             <nav class="navbar">
+              {% if is_granted('ROLE_ADMIN') %}
+              <a class="navigation-link" href="{{path('admin')}}">Espace admin</a>
+              {% endif %}
               <a class="navigation-link" href="{{path('home')}}">Accueil</a>
-              <a class="navigation-link" href="{{path('app_register')}}">Inscription</a>
+              <a class="navigation-link" href="{{path('app_login')}}">Connection</a>
               <a class="navigation-link" href="#review">Avis</a>
               <a class="navigation-link" href="{{path('selection')}}">Nos plats</a>
               <a class="navigation-link" href="#contact">Contact</a>
