@@ -187,6 +187,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    public function getAccountIdentifier(){
+        return $this->getFirstname() . ' ' . substr($this->getLastname(), 0, 1) . '.';
+    }
 
     public function getPhone(): ?string
     {
