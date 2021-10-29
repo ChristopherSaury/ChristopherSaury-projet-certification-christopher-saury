@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace commentaire{% endblock %}
+{%  block stylesheets%}
+<link rel="stylesheet" href="{{asset('asset/css/review.css')}}">
+{% endblock %}
+
+{% block body %}
+<section id="review">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Laisser un avis</h1>
+          <p class="lead">L'équipe de la Fourchette Victorieuse vous remercie de votre confiance. Toujours soucieuse du bien-être et de la 
+              satisfaction de ses clients. </p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg">
+            <h4 class="text-center">Laisser un commentaire</h4>
+            {{ form_start(form) }}
+            <div class="form-group">
+              <label for="content">{% if is_granted('ROLE_USER') %}Ajouter un commentaire en tant que {{ user }} : {% else%} Connectez-vous pour laisser un avis {% endif %}</label>
+              {{ form_row(form.content) }}
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Ajouter commentaire" class="btn btn-primary rounded-0">
+            </div>
+            {{ form_end(form) }}
+          </div>
+        </div>
+      </div>
+</section>
+{% endblock %}
