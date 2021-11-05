@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Accueil{% endblock %}
-        {%  block style%}
-        <link rel="stylesheet" href="{{asset('asset/css/navbar-footer-home.css')}}">
-        {% endblock %}
         {% block stylesheets %}
         <link rel="stylesheet" href="{{asset('asset/css/home.css')}}">
+        {% endblock %}
+        {%  block style%}
+        <link rel="stylesheet" href="{{asset('asset/css/navbar-footer-home.css')}}">
         {% endblock %}
         {% block javascripts %}
         <script src="{{asset('asset/js/home.js')}}"></script>
