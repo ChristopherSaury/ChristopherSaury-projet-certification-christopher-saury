@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ReviewRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +34,21 @@ class Review
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Review::class, inversedBy="reply")
+     */
+    private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Review::class, mappedBy="parent")
+     */
+    private $reply;
+
+    public function __construct()
+    {
+        $this->reply = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +87,48 @@ class Review
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getReply(): Collection
+    {
+        return $this->reply;
+    }
+
+    public function addReply(self $reply): self
+    {
+        if (!$this->reply->contains($reply)) {
+            $this->reply[] = $reply;
+            $reply->setParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReply(self $reply): self
+    {
+        if ($this->reply->removeElement($reply)) {
+            // set the owning side to null (unless already changed)
+            if ($reply->getParent() === $this) {
+                $reply->setParent(null);
+            }
+        }
 
         return $this;
     }

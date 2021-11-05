@@ -2,14 +2,15 @@
 
 namespace App\Controller\User;
 
+use DateTime;
 use App\Entity\Review;
 use App\Form\ReviewType;
 use App\Repository\ReviewRepository;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ReviewController extends AbstractController
@@ -17,23 +18,28 @@ class ReviewController extends AbstractController
     /**
      * @Route("/review", name="review")
      */
-    public function index(ReviewRepository $reviews): Response
+    public function index(ReviewRepository $reviewRepo, Request $request, EntityManagerInterface $em): Response
     {
+        
         if($this->getUser()){
 
-            $user = $this->getUser()->getAccountIdentifier();
+            $userPseudo = $this->getUser()->getAccountIdentifier();
+            $userId = $this->getUser()->getId();
         }else{
-            $user = null;
+            $userPseudo = null;
+            $userId = null;
         }
-        //dd($user);
-        return $this->render('review/review.html.twig', [
-            'controller_name' => 'ReviewController',
-            'review' => $reviews->findAll(),
-            'user' => $user,
-        ]);
-    }
-
+        //dd($reviewRepo->findAll());
+        $form = $this->createForm(ReviewType::class);
+         return $this->render('review/review.html.twig', [
+                'reviews' => $reviewRepo->findAll(),
+                'userPseudo' => $userPseudo,
+                'userId' => $userId,
+                'form' => $form->createView()
+            ]);
+        }
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/review/new", name="create_review")
      */
     public function createReview(Request $request, EntityManagerInterface $em){
@@ -41,7 +47,7 @@ class ReviewController extends AbstractController
         $form = $this->createForm(ReviewType::class, $new_review);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $new_review->setUser($this->getUser()->getId());
+            $new_review->setUser($this->getUser());
             $new_review->setPublicationDate(new DateTime());
             $em->persist($new_review);
             $em->flush();
@@ -52,6 +58,18 @@ class ReviewController extends AbstractController
                 'form' => $form->createView(),
             ]);
         }
+    }
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/user/review/delete/{id}", name="delete_review")
+     */
+    public function deleteReview(Review $review, EntityManagerInterface $em){
+        $em->remove($review);
+        $em->flush();
+
+        $this->addFlash('message', 'commentaire effacé avec succès');
+        return $this->redirectToRoute('review');
+        
     }
 
     
