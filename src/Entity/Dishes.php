@@ -45,10 +45,10 @@ class Dishes
     private $quantity;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="dishes")
+     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="dishes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $category;
+    private $subcategory;
 
     public function getId(): ?int
     {
@@ -77,6 +77,9 @@ class Dishes
         $this->description = $description;
 
         return $this;
+    }
+    public function getSummary(): ?string{
+        return substr($this->description, 0,50) . '...';
     }
 
     public function getPrice(): ?float
@@ -115,15 +118,16 @@ class Dishes
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function getSubcategory(): ?SubCategory
     {
-        return $this->category;
+        return $this->subcategory;
     }
 
-    public function setCategory(?Category $category): self
+    public function setSubcategory(?SubCategory $subcategory): self
     {
-        $this->category = $category;
+        $this->subcategory = $subcategory;
 
         return $this;
     }
+
 }
