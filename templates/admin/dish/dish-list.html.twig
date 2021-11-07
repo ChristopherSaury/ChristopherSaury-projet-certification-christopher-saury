@@ -29,7 +29,7 @@
                   <tr>
                     <th scope="row">{{ dish.id }}</th>
                     <td>{{ dish.name }}</td>
-                    <td>{{ dish.description }}</td>
+                    <td>{{ dish.getSummary() }}</td>
                     <td>{{ dish.price }} €</td>
                     <td><a class="btn" href="{{ path('one_dish', {id: dish.id}) }}" title="aperçu"><i class="far fa-eye"></i></a></td>
                     <td><a class="btn btn-primary" href="{{ path('update_dish', {id: dish.id}) }}" title="modifier"><i class="fas fa-edit"></i></a></td>
