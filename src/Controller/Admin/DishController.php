@@ -28,6 +28,7 @@ class DishController extends AbstractController
         $form = $this->createForm(DishType::class, $dish);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $dish->setActive(true);
             $em->persist($dish);
             $em->flush();
 
@@ -61,6 +62,15 @@ class DishController extends AbstractController
             ]);
         }
     }
+    #[Route('/admin/activate/dish/{id}', name: 'activate_dish')]
+    public function activateDish(Dishes $dish, EntityManagerInterface $em){
+        $dish->setActive(($dish->getActive())? false : true);
+        $em->persist($dish);
+        $em->flush();
+
+        return new Response("true");
+    }
+
     #[Route('/admin/dish/delete/{id}', name: 'delete_dish')]
     public function deleteDish(Dishes $dish, EntityManagerInterface $em){
         $em->remove($dish);

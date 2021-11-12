@@ -19,6 +19,7 @@
                     <th scope="col">Nom</th>
                     <th scope="col">Description</th>
                     <th scope="col">Prix</th>
+                    <th scope="col">Activer</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -31,6 +32,13 @@
                     <td>{{ dish.name }}</td>
                     <td>{{ dish.getSummary() }}</td>
                     <td>{{ dish.price }} €</td>
+                    <td>
+                      <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="{{ dish.id }}"
+                         {{ (dish.active)? 'checked' : '' }} data-id="{{ dish.id }}">
+                        <label class="custom-control-label" for="{{ dish.id }}"></label>
+                      </div>
+                    </td>
                     <td><a class="btn" href="{{ path('one_dish', {id: dish.id}) }}" title="aperçu"><i class="far fa-eye"></i></a></td>
                     <td><a class="btn btn-primary" href="{{ path('update_dish', {id: dish.id}) }}" title="modifier"><i class="fas fa-edit"></i></a></td>
                     <td><a class="btn btn-danger" href="{{ path('delete_dish', {id: dish.id}) }}" title="supprimer"><i class="fas fa-trash-alt"></i></a></td>
@@ -44,4 +52,19 @@
     </div>
 </div>
 
+{% endblock %}
+{% block javascripts %}
+  <script>
+    window.onload = () =>{
+      let activate = document.querySelectorAll("[type=checkbox]");
+      for (let bon of activate){
+        bon.addEventListener("click", function(){
+          let xmlhttp = new XMLHttpRequest;
+
+          xmlhttp.open("get", `/admin/activate/dish/${this.dataset.id}`);
+          xmlhttp.send();
+        })
+      }
+    }
+  </script>
 {% endblock %}
