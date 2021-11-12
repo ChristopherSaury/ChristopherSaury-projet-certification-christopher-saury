@@ -9,99 +9,13 @@
 {% block body %}
 <section id="dishes">
     <h2 class="text-center mb-5">Nos plats</h2>
-    <div class="container-fluid dish-page">
-        <div class="vertical-menu">
-
-          <div class="price-filter">
-            <h5>filtrer par prix</h5>
-            <ul>
-              <li>
-                <label for="price-under-ten">
-                  <input type="radio" name="price-under-ten" id="price-under-ten">
-                  <span>10 euros ou moins</span>
-                </label>
-              </li>
-              <li>
-                <label for="price-under-fifteen">
-                  <input type="radio" name="price-under-fifteen" id="price-under-fifteen">
-                  <span>Entre 10 et 15 euros</span>
-                </label>
-              </li>
-              <li>
-                <label for="price-fifteen-plus">
-                  <input type="radio" name="price-fifteen-plus" id="price-fifteen-plus">
-                  <span>15 euros et plus</span>
-                </label>
-              </li>
-            </ul>
-          </div>
-          <div class="food-category">
-            <h5>Catégories</h5>
-            <ul>
-              <li>
-                <label for="lorem-food">
-                  <input type="checkbox" name="lorem-food" id="lorem-food">
-                  <span>Lorem ipsum</span>
-                </label>
-              </li>
-              <li>
-                <label for="lorem-food">
-                  <input type="checkbox" name="lorem-food" id="lorem-food">
-                  <span>Lorem ipsum</span>
-                </label>
-              </li>
-              <li>
-                <label for="lorem-food">
-                  <input type="checkbox" name="lorem-food" id="lorem-food">
-                  <span>Lorem ipsum</span>
-                </label>
-              </li>
-              <li>
-                <label for="lorem-food">
-                  <input type="checkbox" name="lorem-food" id="lorem-food">
-                  <span>Lorem ipsum</span>
-                </label>
-              </li>
-              <li>
-                <label for="lorem-food">
-                  <input type="checkbox" name="lorem-food" id="lorem-food">
-                  <span>Lorem ipsum</span>
-                </label>
-              </li>
-              <li>
-                <label for="lorem-food">
-                  <input type="checkbox" name="lorem-food" id="lorem-food">
-                  <span>Lorem ipsum</span>
-                </label>
-              </li>
-            </ul>
-          </div>
+      <div class="container-fluid dish-page">  
+        <div class="col-lg-3">
+          <p>Catégories</p>
         </div>
-       
-        <div class="selection-dishes">
-          <div class="container">
-            <div class="row">
-            {% for dish in dishes %}
-              <div class="col-lg-4">
-                <div class="dish-card mt-5">
-                  <div class="dish-img">
-                    <img src="{{ dish.url }}" alt="{{ dish.name }}">
-                  </div>
-                  <div class="dish-content">
-                    <div class="dish-info">
-                      <h3>{{ dish.name }}</h3>
-                      <p>{{ dish.price }} €</p>
-                    </div>
-                    <p class="dish-text">{{ dish.description }}</p>
-                  </div>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-          </div>
+        <div class="col-lg-9">
+          {% include "selection/content.html.twig" %}
         </div>
-        
-  
-    </div>
+      </div>
   </section>
 {% endblock %}
