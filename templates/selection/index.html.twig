@@ -7,11 +7,29 @@
 {% endblock %}
 
 {% block body %}
+{{ dump(categories)}}
 <section id="dishes">
     <h2 class="text-center mb-5">Nos plats</h2>
       <div class="container-fluid dish-page">  
         <div class="col-lg-3">
           <p>Catégories</p>
+          {% for category in categories %}
+          
+          <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{ category.name }}</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="#"></a>
+                </li>
+                {# <li>
+                    <a href="#">Home 2</a>
+                </li>
+                <li>
+                    <a href="#">Home 3</a>
+                </li> #}
+            </ul>
+        </li>
+        {% endfor %}
         </div>
         <div class="col-lg-9">
           {% include "selection/content.html.twig" %}
