@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
 use App\Repository\DishesRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class SelectionController extends AbstractController
 {
     #[Route('/selection', name: 'selection')]
-    public function selection(DishesRepository $dishRespository, Request $request): Response
+    public function selection(DishesRepository $dishRespository, CategoryRepository $catRepo, Request $request): Response
     {
         $limit = 2;
 
@@ -21,6 +22,9 @@ class SelectionController extends AbstractController
 
         $total = $dishRespository->getTotalDishes();
 
-        return $this->render('selection/index.html.twig', compact('dishes', 'limit', 'page','total'));
+        $categories = $catRepo->findAll();
+        //dd($subcategories);
+
+        return $this->render('selection/index.html.twig', compact('dishes', 'limit', 'page','total', 'categories'));
     }
 }
