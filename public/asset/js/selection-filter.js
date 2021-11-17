@@ -2,11 +2,11 @@ window.onload = () => {
     const filterForm = document.querySelector("#categories-filter");
     document.querySelectorAll("#categories-filter input").forEach(input =>{
         input.addEventListener('change', () => {
-            const form = new FormData(filterForm);
+            const Form = new FormData(filterForm);
 
             const Params = new URLSearchParams;
 
-            form.forEach((value, key) => {
+            Form.forEach((value, key) => {
                 Params.append(key, value);
             });
             const Url = new URL(window.location.href);
@@ -15,8 +15,12 @@ window.onload = () => {
                 headers: {
                     "X-Requested-With": "XMLHttpRequest"
                 }
-                }).then(response => {
-                    console.log(response)
+                }).then(response => 
+                    response.json()
+            ).then(data =>{
+                const content = document.querySelector("#content");
+                console.log(content);
+                content.innerHTML = data.content;
             }).catch(e => alert(e))
         })
     }) 
