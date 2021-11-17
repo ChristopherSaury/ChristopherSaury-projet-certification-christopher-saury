@@ -12,7 +12,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Nom: {{ dish.name }}</h5>
                   <p class="card-text">description : {{ dish.description }}</p>
-                  <p>Catégorie: {{ dish.subcategory.name }}</p>
+                  <p>Catégorie: {{ dish.category.name }}</p>
                   <p>Prix: {{ dish.price }} €</p>
                   <a class="btn btn-primary" href="{{ path('update_dish', {id: dish.id}) }}" title="modifier"><i class="fas fa-edit"></i></a>
                   <a class="btn btn-danger" href="{{ path('delete_dish', {id: dish.id}) }}" title="supprimer"><i class="fas fa-trash-alt"></i></a>
