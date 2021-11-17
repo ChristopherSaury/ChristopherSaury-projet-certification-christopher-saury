@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Dishes;
-use App\Entity\SubCategory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -32,8 +32,8 @@ class DishType extends AbstractType
             ->add('price', NumberType::class,[
                 'label' => 'Prix:',
             ])
-            ->add('subcategory', EntityType::class,[
-                'class' => SubCategory::class,
+            ->add('category', EntityType::class,[
+                'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => 'Catégorie:'
                 ])
