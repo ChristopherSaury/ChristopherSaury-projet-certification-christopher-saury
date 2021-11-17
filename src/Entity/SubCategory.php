@@ -24,20 +24,11 @@ class SubCategory
      */
     private $name;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="subCategories")
-     */
-    private $category;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Dishes::class, mappedBy="subcategory", orphanRemoval=true)
-     */
-    private $dishes;
 
 
     public function __construct()
     {
-        $this->dishes = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -53,48 +44,6 @@ class SubCategory
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Dishes[]
-     */
-    public function getDishes(): Collection
-    {
-        return $this->dishes;
-    }
-
-    public function addDish(Dishes $dish): self
-    {
-        if (!$this->dishes->contains($dish)) {
-            $this->dishes[] = $dish;
-            $dish->setSubcategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDish(Dishes $dish): self
-    {
-        if ($this->dishes->removeElement($dish)) {
-            // set the owning side to null (unless already changed)
-            if ($dish->getSubcategory() === $this) {
-                $dish->setSubcategory(null);
-            }
-        }
 
         return $this;
     }
