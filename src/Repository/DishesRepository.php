@@ -19,21 +19,30 @@ class DishesRepository extends ServiceEntityRepository
         parent::__construct($registry, Dishes::class);
     }
 
-    public function getPaginatedDishes($page, $limit, $filter = null){
+    public function getPaginatedDishes($page, $limit, $filters = null){
         $query = $this->createQueryBuilder('d')
-        ->where('d.active = 1')
-        ->orderBy('d.id')
+        ->where('d.active = 1');
+
+        if($filters !== null){
+            $query->andWhere('d.category IN(:cats)')
+            ->setParameter(':cats', array_values($filters));
+        }
+
+        $query->orderBy('d.id')
         ->setFirstResult(($page * $limit) - $limit)
         ->setMaxResults($limit);
 
         return $query->getQuery()->getResult();
     }
 
-    public function getTotalDishes(){
+    public function getTotalDishes($filters = null){
         $query = $this->createQueryBuilder('d')
             ->select('COUNT(d)')
             ->where('d.active = 1');
-
+            if($filters !== null){
+                $query->andWhere('d.category IN(:cats)')
+                ->setParameter(':cats', array_values($filters));
+            }
             return $query->getQuery()->getSingleScalarResult();  
     }
 

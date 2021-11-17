@@ -45,15 +45,15 @@ class Dishes
     private $quantity;
 
     /**
-     * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="dishes")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $subcategory;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $active;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="dishes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -123,18 +123,6 @@ class Dishes
         return $this;
     }
 
-    public function getSubcategory(): ?SubCategory
-    {
-        return $this->subcategory;
-    }
-
-    public function setSubcategory(?SubCategory $subcategory): self
-    {
-        $this->subcategory = $subcategory;
-
-        return $this;
-    }
-
     public function getActive(): ?bool
     {
         return $this->active;
@@ -143,6 +131,18 @@ class Dishes
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

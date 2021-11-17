@@ -7,6 +7,7 @@ use App\Repository\DishesRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class SelectionController extends AbstractController
@@ -14,16 +15,23 @@ class SelectionController extends AbstractController
     #[Route('/selection', name: 'selection')]
     public function selection(DishesRepository $dishRespository, CategoryRepository $catRepo, Request $request): Response
     {
-        $limit = 2;
+        $limit = 9;
 
         $page = (int)$request->query->get('page', 1);
 
-        $dishes = $dishRespository->getPaginatedDishes($page, $limit);
+        $filters = $request->get("category");
+        
+        $dishes = $dishRespository->getPaginatedDishes($page, $limit, $filters);
 
-        $total = $dishRespository->getTotalDishes();
+        $total = $dishRespository->getTotalDishes($filters);
 
         $categories = $catRepo->findAll();
-        //dd($subcategories);
+        
+        if($request->get("ajax")){
+            return new JsonResponse([
+                'content' => $this->renderView('selection/content.html.twig', compact('dishes', 'limit', 'page','total'))
+            ]);
+        }
 
         return $this->render('selection/index.html.twig', compact('dishes', 'limit', 'page','total', 'categories'));
     }
