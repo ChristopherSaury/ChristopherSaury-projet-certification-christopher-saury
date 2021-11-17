@@ -25,14 +25,14 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=SubCategory::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Dishes::class, mappedBy="category")
      */
-    private $subCategories;
+    private $dishes;
 
 
     public function __construct()
     {
-        $this->subCategories = new ArrayCollection();
+        $this->dishes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -53,29 +53,29 @@ class Category
     }
 
     /**
-     * @return Collection|SubCategory[]
+     * @return Collection|Dishes[]
      */
-    public function getSubCategories(): Collection
+    public function getDishes(): Collection
     {
-        return $this->subCategories;
+        return $this->dishes;
     }
 
-    public function addSubCategory(SubCategory $subCategory): self
+    public function addDish(Dishes $dish): self
     {
-        if (!$this->subCategories->contains($subCategory)) {
-            $this->subCategories[] = $subCategory;
-            $subCategory->setCategory($this);
+        if (!$this->dishes->contains($dish)) {
+            $this->dishes[] = $dish;
+            $dish->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeSubCategory(SubCategory $subCategory): self
+    public function removeDish(Dishes $dish): self
     {
-        if ($this->subCategories->removeElement($subCategory)) {
+        if ($this->dishes->removeElement($dish)) {
             // set the owning side to null (unless already changed)
-            if ($subCategory->getCategory() === $this) {
-                $subCategory->setCategory(null);
+            if ($dish->getCategory() === $this) {
+                $dish->setCategory(null);
             }
         }
 

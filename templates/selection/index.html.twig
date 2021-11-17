@@ -7,33 +7,27 @@
 {% endblock %}
 
 {% block body %}
-{{ dump(categories)}}
 <section id="dishes">
     <h2 class="text-center mb-5">Nos plats</h2>
       <div class="container-fluid dish-page">  
         <div class="col-lg-3">
           <p>Catégories</p>
+          <form id="categories-filter">
           {% for category in categories %}
-          
-          <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{ category.name }}</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="#"></a>
-                </li>
-                {# <li>
-                    <a href="#">Home 2</a>
-                </li>
-                <li>
-                    <a href="#">Home 3</a>
-                </li> #}
-            </ul>
-        </li>
-        {% endfor %}
+            <p>
+              <input type="checkbox" name="category[]" id="cat{{ category.id }}" value="{{ category.id }}">
+              <label for="cat{{ category.id }}">{{ category.name }}</label>
+            </p>
+          {% endfor %}
+          <input type="hidden" name="page" value="{{ page }}">
+        </form>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9" id="content">
           {% include "selection/content.html.twig" %}
         </div>
       </div>
   </section>
+{% endblock %}
+{% block javascripts %}
+  <script src="{{ asset('asset/js/selection-filter.js') }}"></script>
 {% endblock %}
