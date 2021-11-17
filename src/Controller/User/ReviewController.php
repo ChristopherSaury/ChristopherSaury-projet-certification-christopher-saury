@@ -19,8 +19,7 @@ class ReviewController extends AbstractController
      * @Route("/review", name="review")
      */
     public function index(ReviewRepository $reviewRepo, Request $request, EntityManagerInterface $em): Response
-    {
-        
+    {    
         if($this->getUser()){
 
             $userPseudo = $this->getUser()->getAccountIdentifier();
@@ -29,7 +28,6 @@ class ReviewController extends AbstractController
             $userPseudo = null;
             $userId = null;
         }
-        //dd($reviewRepo->findAll());
         $form = $this->createForm(ReviewType::class);
          return $this->render('review/review.html.twig', [
                 'reviews' => $reviewRepo->findAll(),
