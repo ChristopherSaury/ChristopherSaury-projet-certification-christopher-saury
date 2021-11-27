@@ -11,12 +11,16 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <section id="signUp">
-        <div class="container">
-            <div class="row">
-                <div class="form-wrap col-lg">
-                    <div class="form">
 
+<section id="register">
+    <div class="container-fluid register-page-container">
+        <div class="row">
+            <div class="col-lg-7 register-bkg">
+                <img src="{{ asset('asset/image/burger.jpg') }}" alt="">
+            </div>
+            <div class="col-lg-5 register-form">
+                <h1 class="text-center">Créer un compte</h1>
+                <div class="register-container">
                     {{ form_start(registrationForm) }}
                     <h2 class="text-center">Inscription</h2>
                     {{ form_row(registrationForm.lastname) }}
@@ -31,10 +35,9 @@
                     </div>
                     <p class="mt-2">Vous avez déjà un compte ? <a href="{{path('app_login')}}">Connectez vous</a></p>
                     {{ form_end(registrationForm) }}
-                    </div>
-
                 </div>
             </div>
         </div>
+    </div>
 </section>
 {% endblock %}
