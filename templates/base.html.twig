@@ -32,13 +32,13 @@
               <a class="navigation-link" href="{{ path('review') }}">Avis</a>
               <a class="navigation-link" href="{{path('selection')}}">Nos plats</a>
               <a class="navigation-link" href="#contact">Contact</a>
-              <a class="navigation-link" href="#faq">FAQ</a>
+              <a class="navigation-link" href="{{path('faq')}}">FAQ</a>
             </nav>
       
             <div class="icons">
               <i class="fas fa-bars" id="menu-bars"></i>
 
-              <a href="#" class="fas fa-shopping-cart"></a>
+              <a href="{{ path('cart_index') }}" class="fas fa-shopping-cart"></a>
             </div>
             </div>
           </header>
