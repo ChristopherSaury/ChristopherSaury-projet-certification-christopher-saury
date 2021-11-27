@@ -13,6 +13,7 @@
                       <p>{{ dish.price }} €</p>
                     </div>
                     <p class="dish-text">{{ dish.description }}</p>
+                    <a href="{{ path('cart_add', {id: dish.id}) }}" class="btn btn-success"><i class="fas fa-cart-arrow-down"></i>Ajouter</a>
                   </div>
                 </div>
               </div>
