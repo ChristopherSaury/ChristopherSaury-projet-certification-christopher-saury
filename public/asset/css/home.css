@@ -16,11 +16,15 @@
   width: 100%;
   height: 100%;
   color: #fff;
-  background-color: rgba(0, 22, 40, .6);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.element-container{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 22, 40, .6);
 }
 
 .banner-content .btn-hero{
@@ -121,4 +125,33 @@
   .reveal.active {
     transform: translateY(0px);
     opacity: 1;
+  }
+
+  @media only screen and (max-width: 576px) {
+    .banner-content h1{
+      font-size: 24px;
+    }
+    /* .banner-content{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    } */
+    #home-explanation h2 {
+      font-size: 40px;
+    }
+    #home-offer h2 {
+      font-size: 45px;
+    }
+  }
+  @media only screen and (min-width: 577px) and (max-width: 768px) {
+    .banner-content h1{
+      font-size: 34px;
+    }
+    #home-explanation h2 {
+      font-size: 45px;
+    }
+    #home-offer h2{
+      font-size: 45px;
+    }
   }
