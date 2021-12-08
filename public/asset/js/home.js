@@ -39,6 +39,3 @@ function reveal() {
   }
 }
 
-
-let currentYear = new Date().getUTCFullYear();
-document.getElementById("currentYear").innerHTML = currentYear;
