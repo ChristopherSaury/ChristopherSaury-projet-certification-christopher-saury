@@ -10,8 +10,8 @@
 <section id="dishes">
     <h2 class="text-center mb-5">Nos plats</h2>
       <div class="container-fluid dish-page">  
-        <div class="col-lg-3">
-          <p>Catégories</p>
+        <div class="filter-container">
+          <h3 class="mb-3">Catégories</h3>
           <form id="categories-filter">
           {% for category in categories %}
             <p>
@@ -22,7 +22,7 @@
           <input type="hidden" name="page" value="{{ page }}">
         </form>
         </div>
-        <div class="col-lg-9" id="content">
+        <div class="selection-container" id="content">
           {% include "selection/content.html.twig" %}
         </div>
       </div>

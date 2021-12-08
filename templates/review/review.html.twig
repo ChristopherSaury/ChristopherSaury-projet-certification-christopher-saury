@@ -30,7 +30,7 @@
                 {{ form_row(form.content, {'label' : (is_granted('ROLE_USER'))? 'Ajouter un commentaire en tant que ' ~ userPseudo : 'Connectez-vous pour laisser un commentaire' }) }} 
               </div>
               <div class="form-group">
-                <input type="submit" value="Ajouter commentaire" class="btn btn-primary rounded-0">
+                <input type="submit" value="Ajouter commentaire" class="mt-2 btn btn-primary rounded-0">
               </div>
               {{ form_end(form) }}
             </form>
