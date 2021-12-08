@@ -71,6 +71,8 @@
 #home-explanation {
     background-color: #8f6f5c;
     padding: 0 12% 0 12%;
+    width: 100%;
+    height: auto;
   }
   #home-explanation h2 {
     font-size: 56px;
@@ -99,6 +101,8 @@
   
   #home-offer {
     background-color: #fff;
+    width: 100%;
+    height: auto;
   }
   
   #home-offer .row img {

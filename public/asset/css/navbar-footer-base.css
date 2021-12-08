@@ -116,7 +116,7 @@ header .icons a:hover {
 }
 /***** FOOTER *********/
 .site-footer{
-  padding: 80px 0;
+  padding: 60px 0;
   background: #303133;
   font-size: 14px;
   color: #fff;
@@ -127,6 +127,7 @@ header .icons a:hover {
 .site-footer a{
   color: #fdbd32;
   border-bottom: 1px solid transparent;
+  text-decoration: none;
 }
 .site-footer a:hover{
   color:#fff ;
