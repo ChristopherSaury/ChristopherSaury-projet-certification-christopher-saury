@@ -32,8 +32,8 @@ class RegistrationFormType extends AbstractType
                     'attr' => ['placeholder' => 'Entrer votre numéro de téléphone']])
             ->add('email', TextType::class,[ 'label' => 'Email* :', 'attr' => ['placeholder' => 'Entrer votre adresse email']])
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'Termes d\'utilisation',
-                'mapped' => false,
+                'label' => 'J\'ai lu et j\'accepte les conditions générales d\'utilisations',
+                'mapped' => true,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter les conditions d\'utilisation.',

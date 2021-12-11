@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -68,6 +69,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @Assert/IsTrue(message="Veuillez accepter les conditions générales")
+     */
+    private $agreeTerms;
 
     public function __construct()
     {
@@ -271,6 +278,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getAgreeTerms(): ?bool
+    {
+        return $this->agreeTerms;
+    }
+
+    public function setAgreeTerms(bool $agreeTerms): self
+    {
+        $this->agreeTerms = $agreeTerms;
 
         return $this;
     }

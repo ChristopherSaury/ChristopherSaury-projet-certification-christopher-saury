@@ -27,7 +27,10 @@
                     {{ form_row(registrationForm.email) }}
                     {{ form_row(registrationForm.phone) }}
                     {{ form_row(registrationForm.plainPassword) }}
+                    <br>
                     {{ form_row(registrationForm.agreeTerms) }}
+                    <p class="mt-2"><a href="{{ path('cgu') }}" target="_blank">Conditions générales d'utilisation</a></p>
+                    <P>cliquer sur le lien de confirmation que vous recevrez par email puis connectez-vous.</P>
                     
                     <div class="btn-form-wrapper">
                         <button type="submit" class="btn">Terminer</button>
