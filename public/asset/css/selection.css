@@ -31,7 +31,7 @@
   overflow: hidden;
   bottom: 0;
   transition: all .4s;
-  background: #684f40;
+  background: #735240;
   color: #fff;
   z-index: 5;
 }
@@ -127,7 +127,7 @@
   width: 2.5rem;
   text-align: center;
   font-size: 1.5rem;
-  color: #684f40;
+  color: #735240;
   text-decoration: none;
   border-radius: 50%;
   background: rgb(214, 208, 208);
@@ -147,12 +147,12 @@
   left: 5px;
 }
 #dishes .dish-options .btn{
-  background-color: #684f40;
+  background-color: #735240;
   color: #fdbd32;
 }
 #dishes .dish-options .btn:hover{
   background-color: #fdbd32;
-  color: #684f40;
+  color: #735240;
 }
 
 @media only screen and (max-width: 576px){
