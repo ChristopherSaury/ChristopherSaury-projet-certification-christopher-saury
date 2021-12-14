@@ -22,7 +22,7 @@
     <body>
       <div class="box-area">
         <header id="site-header">
-            <a href="{{ path('home') }}" class="logo-nav">La Fourchette Victorieuse</a>
+            <a href="{{ path('home') }}" class="logo-nav"><img class="site-logo" src="{{ asset('asset/image/logo.png') }}" alt="logo restaurant"></a> 
       
             <nav class="navbar">
               <ul> 
@@ -33,7 +33,7 @@
                 <li><a class="navigation-link" href="{{path('app_login')}}">Connection</a></li>
                 <li><a class="navigation-link" href="{{ path('review') }}">Avis</a></li>
                 <li><a class="navigation-link" href="{{path('selection')}}">Menu</a></li>
-                <li><a class="navigation-link" href="#contact">Contact</a></li>
+                <li><a class="navigation-link" href="{{path('contact')}}">Contact</a></li>
                 <li><a class="navigation-link" href="{{path('faq')}}">FAQ</a></li>
               </ul>
             </nav>
@@ -50,11 +50,26 @@
                 <li><a class="navigation-link" href="{{path('app_login')}}">Connection</a></li>
                 <li><a class="navigation-link" href="{{ path('review') }}">Avis</a></li>
                 <li><a class="navigation-link" href="{{path('selection')}}">Nos plats</a></li>
-                <li><a class="navigation-link" href="#contact">Contact</a></li>
+                <li><a class="navigation-link" href="{{path('contact')}}">Contact</a></li>
                 <li><a class="navigation-link" href="{{path('faq')}}">FAQ</a></li>
               </ul>
             </div>
-
+            {% if is_granted('ROLE_USER') %}
+            <div class="selector">
+              <div id="selectField">
+                <p id="selectText">Bonjour {{ app.user.firstname|capitalize }}</p>
+                <i class="fas fa-ellipsis-v"></i>
+              </div>
+              <ul id="list" class="hide">
+                <li class="options">
+                  <p><a href="{{ path('user') }}">Mon compte</a></p>
+                </li>
+                <li class="options">
+                  <p><a href="{{ path('app_logout') }}">Déconnexion</a></p>
+                </li>
+              </ul>
+          </div>
+          {% endif %}
             <div class="icons">
               <a href="{{ path('cart_index') }}" title="Mon panier" class="fas fa-shopping-cart"></a>
             </div>
@@ -62,37 +77,9 @@
           </header>
 
       </div>
+
         {% block body %}{% endblock %}
-        <!-- <footer>
-          <div class="container footer-main-container ">
-            <div class="row footer-content">
-              <div class="site-map col-lg">
-                <h6>Plan du site</h6>
-                <a href="{{path('home')}}">Accueil</a>
-                <a href="{{path('app_register')}}">Inscription</a>
-                <a href="{{path('app_login')}}">Connexion</a>
-                <a href="#">Avis</a>
-                <a href="#">Nos plats</a>
-                <a href="#">Contact</a>
-                <a href="#">F.A.Q.</a>
-              </div>
-              <div class="social-network col-lg">
-                <h6>Nos réseaux sociaux</h6>
-                <a href="#">Instagram</a>
-                <a href="#">Twitter</a>
-                <a href="#">Facebook</a>
-                <a href="#">Youtube</a>
-                <a href="#">Linkedin</a>
-                <br>
-                <br>
-              </div>
-            </div>
-          </div>
-          <p class="text-center">
-            par Christopher Saury <span class="far fa-copyright"></span>
-            <span id="currentYear"></span> tout droits réservés
-          </p>
-        </footer> -->
+
         <footer class="site-footer">
           <div class="container">
             <div class="row mb-5">
@@ -127,8 +114,9 @@
                   <li><a href="{{path('app_login')}}">Connexion</a></li>
                   <li><a href="{{ path('review') }}">Avis</a></li>
                   <li><a href="{{path('selection')}}">Menu</a></li>
-                  <li><a href="#contact">Contact</a></li>
+                  <li><a href="{{path('contact')}}">Contact</a></li>
                   <li><a href="{{path('faq')}}">FAQ</a></li>
+                  <li><a href="{{path('cgu')}}">Conditions générales d'utilisation</a></li>
                 </ul>
               </div>
 
@@ -159,6 +147,24 @@
       function toggleMobileMenu(menu) {
     menu.classList.toggle('open');
     }
+
+    //user menu
+    let selectField = document.getElementById("selectField");
+    let selectText = document.getElementById("selectText");
+    let options = document.getElementsByClassName("options");
+    let list = document.getElementById("list");
+    console.log(options);
+
+    selectField.onclick = function (){
+      list.classList.toggle("hide");
+    }
+
+    for (option in options){
+      option.onclick = function (){
+        selectText.innerHTML = this.textContent;
+      }
+    }
+    //date footer
     let currentYear = new Date().getUTCFullYear();
     document.getElementById("currentYear").innerHTML = currentYear;
     </script>
