@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -71,10 +70,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $isVerified = false;
 
     /**
-     * @ORM\Column(type="boolean")
-     * @Assert/IsTrue(message="Veuillez accepter les conditions générales")
+     * @ORM\Column(type="datetime")
      */
-    private $agreeTerms;
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $useTerms;
 
     public function __construct()
     {
@@ -282,14 +285,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAgreeTerms(): ?bool
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->agreeTerms;
+        return $this->created_at;
     }
 
-    public function setAgreeTerms(bool $agreeTerms): self
+    public function setCreatedAt(\DateTimeInterface $created_at): self
     {
-        $this->agreeTerms = $agreeTerms;
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUseTerms(): ?bool
+    {
+        return $this->useTerms;
+    }
+
+    public function setUseTerms(bool $useTerms): self
+    {
+        $this->useTerms = $useTerms;
 
         return $this;
     }

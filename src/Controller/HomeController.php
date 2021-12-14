@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -14,6 +15,7 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            
         ]);
     }
     #[Route('/cgu', name: 'cgu')]
